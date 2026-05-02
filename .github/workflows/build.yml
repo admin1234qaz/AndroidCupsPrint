@@ -10,6 +10,10 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+      - name: Grant gradlew permission
+        run: chmod +x ./gradlew
+      - name: Set local SDK path
+        run: echo "sdk.dir=$ANDROID_HOME" > local.properties
       - name: Build debug APK
         run: ./gradlew assembleDebug
       - name: Upload APK
