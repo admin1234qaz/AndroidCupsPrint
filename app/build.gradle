@@ -22,9 +22,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.github.triplet.play'
 
 repositories {
-    maven { url 'https://maven.aliyun.com/repository/jcenter' }
-    maven { url 'https://maven.fabric.io/public' }
+    google()
     mavenCentral()
+    // 华为云 JCenter 镜像，确保 koin 1.0.0 可用
+    maven { url 'https://mirrors.huaweicloud.com/repository/maven/jcenter' }
 }
 
 android {
@@ -89,8 +90,9 @@ dependencies {
     implementation "org.koin:koin-core:${versions.koin}"
     implementation "org.koin:koin-core-ext:${versions.koin}"
     implementation "org.koin:koin-android:${versions.koin}"
-    apply plugin: 'kotlin-android-extensions'
 }
+
+apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'jacoco'
 task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
